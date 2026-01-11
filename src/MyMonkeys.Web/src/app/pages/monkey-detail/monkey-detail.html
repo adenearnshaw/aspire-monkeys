@@ -1,19 +1,38 @@
-<p><a routerLink="/monkeys">← Back to list</a></p>
+<p>
+	<a class="btn-link" routerLink="/monkeys">← Back to list</a>
+</p>
 
 <ng-container *ngIf="monkey$ | async as m; else loading">
-	<h1>{{ m.name }}</h1>
+	<header class="detail-head">
+		<h1>{{ m.name }}</h1>
+		<div class="chips">
+			<span class="pill">{{ m.location }}</span>
+			<span class="pill">Population: {{ m.population }}</span>
+		</div>
+	</header>
 
-	<img class="hero" [src]="m.imageUrl" [alt]="m.name" />
+	<section class="detail surface">
+		<img class="hero" [src]="m.imageUrl" [alt]="m.name" />
+		<div class="facts">
+			<div class="fact">
+				<div class="label">Coordinates</div>
+				<div class="value">{{ m.latitude }}, {{ m.longitude }}</div>
+			</div>
+			<div class="fact">
+				<div class="label">Location</div>
+				<div class="value">{{ m.location }}</div>
+			</div>
+		</div>
+	</section>
 
-	<div class="facts">
-		<div><strong>Location:</strong> {{ m.location }}</div>
-		<div><strong>Population:</strong> {{ m.population }}</div>
-		<div><strong>Coordinates:</strong> {{ m.latitude }}, {{ m.longitude }}</div>
-	</div>
-
-	<p class="details">{{ m.details }}</p>
+	<section class="details surface">
+		<p>{{ m.details }}</p>
+	</section>
 </ng-container>
 
 <ng-template #loading>
-	<p>Loading monkey…</p>
+	<div class="loading surface">
+		<div class="loading__bar"></div>
+		<p>Loading monkey…</p>
+	</div>
 </ng-template>

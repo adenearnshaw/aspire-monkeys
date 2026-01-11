@@ -1,17 +1,31 @@
-<h1>Monkeys</h1>
+<section class="page-head surface">
+	<div>
+		<h1>Monkeys</h1>
+		<p>Browse the troop, open a profile, and learn a few fun facts.</p>
+	</div>
+	<div class="page-head__aside">
+		<span class="pill">Data via Web BFF</span>
+	</div>
+</section>
 
 <ng-container *ngIf="monkeys$ | async as monkeys; else loading">
 	<div class="grid">
 		<a class="card" *ngFor="let m of monkeys" [routerLink]="['/monkeys', m.id]">
-			<img [src]="m.imageUrl" [alt]="m.name" loading="lazy" />
-			<div class="meta">
-				<div class="name">{{ m.name }}</div>
-				<div class="location">{{ m.location }}</div>
+			<div class="card__media">
+				<img [src]="m.imageUrl" [alt]="m.name" loading="lazy" />
+				<div class="card__fade"></div>
+			</div>
+			<div class="card__meta">
+				<div class="card__name">{{ m.name }}</div>
+				<div class="card__location">{{ m.location }}</div>
 			</div>
 		</a>
 	</div>
 </ng-container>
 
 <ng-template #loading>
-	<p>Loading monkeys…</p>
+	<div class="loading surface">
+		<div class="loading__bar"></div>
+		<p>Loading monkeys…</p>
+	</div>
 </ng-template>
