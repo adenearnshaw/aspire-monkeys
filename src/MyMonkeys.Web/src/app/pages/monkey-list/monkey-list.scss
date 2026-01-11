@@ -1,0 +1,40 @@
+.grid {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.card {
+	display: block;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	border-radius: 12px;
+	overflow: hidden;
+	text-decoration: none;
+	color: inherit;
+	background: #fff;
+}
+
+.card:hover {
+	border-color: rgba(0, 0, 0, 0.24);
+}
+
+img {
+	width: 100%;
+	height: 160px;
+	object-fit: cover;
+	display: block;
+}
+
+.meta {
+	padding: 0.75rem;
+}
+
+.name {
+	font-weight: 650;
+	margin-bottom: 0.25rem;
+}
+
+.location {
+	opacity: 0.75;
+	font-size: 0.95rem;
+}

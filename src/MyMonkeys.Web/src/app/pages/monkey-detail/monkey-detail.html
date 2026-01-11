@@ -1,0 +1,19 @@
+<p><a routerLink="/monkeys">← Back to list</a></p>
+
+<ng-container *ngIf="monkey$ | async as m; else loading">
+	<h1>{{ m.name }}</h1>
+
+	<img class="hero" [src]="m.imageUrl" [alt]="m.name" />
+
+	<div class="facts">
+		<div><strong>Location:</strong> {{ m.location }}</div>
+		<div><strong>Population:</strong> {{ m.population }}</div>
+		<div><strong>Coordinates:</strong> {{ m.latitude }}, {{ m.longitude }}</div>
+	</div>
+
+	<p class="details">{{ m.details }}</p>
+</ng-container>
+
+<ng-template #loading>
+	<p>Loading monkey…</p>
+</ng-template>

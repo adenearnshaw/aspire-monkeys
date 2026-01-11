@@ -1,0 +1,17 @@
+<h1>Monkeys</h1>
+
+<ng-container *ngIf="monkeys$ | async as monkeys; else loading">
+	<div class="grid">
+		<a class="card" *ngFor="let m of monkeys" [routerLink]="['/monkeys', m.id]">
+			<img [src]="m.imageUrl" [alt]="m.name" loading="lazy" />
+			<div class="meta">
+				<div class="name">{{ m.name }}</div>
+				<div class="location">{{ m.location }}</div>
+			</div>
+		</a>
+	</div>
+</ng-container>
+
+<ng-template #loading>
+	<p>Loading monkeys…</p>
+</ng-template>
