@@ -1,0 +1,6 @@
+@MyMonkeys.WebBff_HostAddress = http://localhost:5017
+
+GET {{MyMonkeys.WebBff_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

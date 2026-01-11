@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/AppHost/">
+    <Project Path="MyMonkeys.AppHost/MyMonkeys.AppHost.csproj" />
+    <Project Path="MyMonkeys.ServiceDefaults/MyMonkeys.ServiceDefaults.csproj" />
+    <Project Path="MyMonkeys.ServiceDefaults.Maui/MyMonkeys.ServiceDefaults.Maui.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <File Path="MyMonkeys.Api\**\*" />
+  </Folder>
+    <Folder Name="/Mobile/">
+    <Project Path="MyMonkeys.Mobile/MyMonkeys.Mobile.csproj" />
+    <Project Path="MyMonkeys.MobileBff/MyMonkeys.MobileBff.csproj" />
+  </Folder>
+  <Folder Name="/Web/">
+    <Project Path="MyMonkeys.WebBff/MyMonkeys.WebBff.csproj" />
+    <Project Path="MyMonkeys.Web/MyMonkeys.Web.esproj">
+      <BuildType Project="Debug" />
+      <Build />
+    </Project>
+  </Folder>
+</Solution>

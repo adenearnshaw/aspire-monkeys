@@ -1,0 +1,6 @@
+@MyMonkeys.MobileBff_HostAddress = http://localhost:5111
+
+GET {{MyMonkeys.MobileBff_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

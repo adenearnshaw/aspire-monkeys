@@ -1,0 +1,132 @@
+[
+  {
+    "id": "baboon",
+    "name": "Baboon",
+    "location": "Africa & Asia",
+    "details": "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg",
+    "population": 10000,
+    "latitude": -8.783195,
+    "longitude": 34.508523
+  },
+  {
+    "id": "capuchin-monkey",
+    "name": "Capuchin Monkey",
+    "location": "Central & South America",
+    "details": "The capuchin monkeys are New World monkeys of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/capuchin.jpg",
+    "population": 23000,
+    "latitude": 12.769013,
+    "longitude": -85.602364
+  },
+  {
+    "id": "blue-monkey",
+    "name": "Blue Monkey",
+    "location": "Central and East Africa",
+    "details": "The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/bluemonkey.jpg",
+    "population": 12000,
+    "latitude": 1.957709,
+    "longitude": 37.297204
+  },
+  {
+    "id": "squirrel-monkey",
+    "name": "Squirrel Monkey",
+    "location": "Central & South America",
+    "details": "The squirrel monkeys are the New World monkeys of the genus Saimiri. They are the only genus in the subfamily Saimirinae. The name of the genus Saimiri is of Tupi origin, and was also used as an English name by early researchers.",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/saimiri.jpg",
+    "population": 11000,
+    "latitude": -8.783195,
+    "longitude": -55.491477
+  },
+  {
+    "id": "golden-lion-tamarin",
+    "name": "Golden Lion Tamarin",
+    "location": "Brazil",
+    "details": "The golden lion tamarin also known as the golden marmoset, is a small New World monkey of the family Callitrichidae.",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/tamarin.jpg",
+    "population": 19000,
+    "latitude": -14.235004,
+    "longitude": -51.92528
+  },
+  {
+    "id": "howler-monkey",
+    "name": "Howler Monkey",
+    "location": "South America",
+    "details": "Howler monkeys are among the largest of the New World monkeys. Fifteen species are currently recognised. Previously classified in the family Cebidae, they are now placed in the family Atelidae.",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/alouatta.jpg",
+    "population": 8000,
+    "latitude": -8.783195,
+    "longitude": -55.491477
+  },
+  {
+    "id": "japanese-macaque",
+    "name": "Japanese Macaque",
+    "location": "Japan",
+    "details": "The Japanese macaque, is a terrestrial Old World monkey species native to Japan. They are also sometimes known as the snow monkey because they live in areas where snow covers the ground for months each",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/macasa.jpg",
+    "population": 1000,
+    "latitude": 36.204824,
+    "longitude": 138.252924
+  },
+  {
+    "id": "mandrill",
+    "name": "Mandrill",
+    "location": "Southern Cameroon, Gabon, and Congo",
+    "details": "The mandrill is a primate of the Old World monkey family, closely related to the baboons and even more closely to the drill. It is found in southern Cameroon, Gabon, Equatorial Guinea, and Congo.",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/mandrill.jpg",
+    "population": 17000,
+    "latitude": 7.369722,
+    "longitude": 12.354722
+  },
+  {
+    "id": "proboscis-monkey",
+    "name": "Proboscis Monkey",
+    "location": "Borneo",
+    "details": "The proboscis monkey or long-nosed monkey, known as the bekantan in Malay, is a reddish-brown arboreal Old World monkey that is endemic to the south-east Asian island of Borneo.",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/borneo.jpg",
+    "population": 15000,
+    "latitude": 0.961883,
+    "longitude": 114.55485
+  },
+  {
+    "id": "sebastian",
+    "name": "Sebastian",
+    "location": "Seattle",
+    "details": "This little trouble maker lives in Seattle with James and loves traveling on adventures with James and tweeting @MotzMonkeys. He by far is an Android fanboy and is getting ready for the new Google Pixel 9!",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/sebastian.jpg",
+    "population": 1,
+    "latitude": 47.606209,
+    "longitude": -122.332071
+  },
+  {
+    "id": "henry",
+    "name": "Henry",
+    "location": "Phoenix",
+    "details": "An adorable Monkey who is traveling the world with Heather and live tweets his adventures @MotzMonkeys. His favorite platform is iOS by far and is excited for the new iPhone Xs!",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/henry.jpg",
+    "population": 1,
+    "latitude": 33.448377,
+    "longitude": -112.074037
+  },
+  {
+    "id": "red-shanked-douc",
+    "name": "Red-shanked douc",
+    "location": "Vietnam",
+    "details": "The red-shanked douc is a species of Old World monkey, among the most colourful of all primates. The douc is an arboreal and diurnal monkey that eats and sleeps in the trees of the forest.",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg",
+    "population": 1300,
+    "latitude": 16.111648,
+    "longitude": 108.262122
+  },
+  {
+    "id": "mooch",
+    "name": "Mooch",
+    "location": "Seattle",
+    "details": "An adorable Monkey who is traveling the world with Heather and live tweets his adventures @MotzMonkeys. Her favorite platform is iOS by far and is excited for the new iPhone 16!",
+    "imageUrl": "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/Mooch.PNG",
+    "population": 1,
+    "latitude": 47.608013,
+    "longitude": -122.335167
+  }
+]

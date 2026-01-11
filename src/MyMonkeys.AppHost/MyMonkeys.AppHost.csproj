@@ -1,0 +1,22 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.1.0">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>90c3d416-481e-478e-9db0-656d7cd790c6</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyMonkeys.WebBff\MyMonkeys.WebBff.csproj" />
+    <ProjectReference Include="..\MyMonkeys.MobileBff\MyMonkeys.MobileBff.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.JavaScript" Version="13.1.0" />
+    <PackageReference Include="Aspire.Hosting.Maui" Version="13.1.0-preview.1.25616.3" />
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Golang" Version="13.0.1-beta.468" />    
+  </ItemGroup>
+
+</Project>
