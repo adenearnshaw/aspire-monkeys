@@ -12,7 +12,9 @@
 	</header>
 
 	<section class="detail surface">
-		<img class="hero" [src]="m.imageUrl" [alt]="m.name" />
+		<div class="hero-wrap" [style.--hero-bg]="'url(' + m.imageUrl + ')'">
+			<img class="hero" [src]="m.imageUrl" [alt]="m.name" />
+		</div>
 		<div class="facts">
 			<div class="fact">
 				<div class="label">Coordinates</div>
