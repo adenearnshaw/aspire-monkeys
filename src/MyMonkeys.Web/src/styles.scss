@@ -34,7 +34,17 @@
 
 html,
 body {
-	height: 100%;
+	min-height: 100%;
+}
+
+html {
+	/* Apply the gradient to the root element so it covers the full document height
+	   (avoids the "restart" effect when body is shorter than content). */
+	background:
+		radial-gradient(900px 500px at 12% -10%, rgba(249, 115, 22, 0.22), rgba(249, 115, 22, 0) 55%),
+		radial-gradient(700px 500px at 88% 0%, rgba(255, 237, 213, 0.95), rgba(255, 237, 213, 0) 60%),
+		linear-gradient(180deg, #fff7ed 0%, #fff7ed 25%, #fffbf5 70%, #ffffff 100%);
+	background-repeat: no-repeat;
 }
 
 body {
@@ -42,10 +52,7 @@ body {
 	color: var(--c-ink);
 	font-family: var(--font-sans);
 	letter-spacing: -0.01em;
-	background:
-		radial-gradient(900px 500px at 12% -10%, rgba(249, 115, 22, 0.22), rgba(249, 115, 22, 0) 55%),
-		radial-gradient(700px 500px at 88% 0%, rgba(255, 237, 213, 0.95), rgba(255, 237, 213, 0) 60%),
-		linear-gradient(180deg, #fff7ed 0%, #fff7ed 25%, #fffbf5 70%, #ffffff 100%);
+	background: transparent;
 }
 
 /* Typography */

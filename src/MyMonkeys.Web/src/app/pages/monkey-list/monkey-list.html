@@ -4,11 +4,21 @@
 		<p>Browse the troop, open a profile, and learn a few fun facts.</p>
 	</div>
 	<div class="page-head__aside">
-		<span class="pill">Data via Web BFF</span>
+		<label class="filter">
+			<span class="filter__label">Filter</span>
+			<input
+				class="filter__input"
+				type="search"
+				placeholder="Name, location, id…"
+				autocomplete="off"
+				[formControl]="query"
+			>
+		</label>
 	</div>
 </section>
 
-<ng-container *ngIf="monkeys$ | async as monkeys; else loading">
+<ng-container *ngIf="filteredMonkeys$ | async as monkeys; else loading">
+	<p class="result-meta">Showing {{ monkeys.length }} result(s)</p>
 	<div class="grid">
 		<a class="card" *ngFor="let m of monkeys" [routerLink]="['/monkeys', m.id]">
 			<div class="card__media">
@@ -21,6 +31,7 @@
 			</div>
 		</a>
 	</div>
+	<p class="empty" *ngIf="monkeys.length === 0">No matches. Try a different filter.</p>
 </ng-container>
 
 <ng-template #loading>
