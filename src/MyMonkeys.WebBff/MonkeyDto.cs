@@ -5,4 +5,7 @@ internal sealed record MonkeyDto(
     string Name,
     string Location,
     string Details,
-    string ImageUrl);
+    string ImageUrl,
+    int Population,
+    double Latitude,
+    double Longitude);
