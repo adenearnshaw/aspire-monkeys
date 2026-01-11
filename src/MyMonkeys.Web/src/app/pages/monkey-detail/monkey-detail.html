@@ -16,9 +16,20 @@
 			<img class="hero" [src]="m.imageUrl" [alt]="m.name" />
 		</div>
 		<div class="facts">
-			<div class="fact">
-				<div class="label">Coordinates</div>
-				<div class="value">{{ m.latitude }}, {{ m.longitude }}</div>
+			<div class="fact map">
+				<div class="label">Map</div>
+				<ng-container *ngIf="m.mapUrl; else mapUnavailable">
+					<a class="map-link" [href]="m.osmLink" target="_blank" rel="noopener">
+						<img class="map-img" [src]="m.mapUrl" [alt]="'Map near ' + m.location" loading="lazy" />
+					</a>
+					<div class="map-attrib">
+						© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>
+						contributors
+					</div>
+				</ng-container>
+				<ng-template #mapUnavailable>
+					<div class="value">Map unavailable</div>
+				</ng-template>
 			</div>
 			<div class="fact">
 				<div class="label">Location</div>

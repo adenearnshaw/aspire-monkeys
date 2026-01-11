@@ -92,6 +92,39 @@
 	font-weight: 650;
 }
 
+.fact.map {
+	padding-bottom: 0.8rem;
+}
+
+.map-link {
+	display: block;
+	margin-top: 0.55rem;
+	border-radius: calc(var(--radius-md) - 2px);
+	overflow: hidden;
+}
+
+.map-img {
+	display: block;
+	width: 100%;
+	height: 190px;
+	object-fit: cover;
+	border: 1px solid var(--c-border);
+	border-radius: calc(var(--radius-md) - 2px);
+	box-shadow: var(--shadow-sm);
+}
+
+.map-attrib {
+	margin-top: 0.45rem;
+	font-size: 0.85rem;
+	color: var(--c-ink-muted);
+}
+
+.map-attrib a {
+	color: inherit;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
 .details {
 	margin-top: 1rem;
 	padding: 1rem 1.25rem;
