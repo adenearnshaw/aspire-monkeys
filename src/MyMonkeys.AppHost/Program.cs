@@ -21,26 +21,4 @@ var webApp = builder.AddJavaScriptApp("web-app", "../MyMonkeys.Web")
     .WithEnvironment("WEB_BFF_URL", webBff.GetEndpoint("https"))
     .WithReference(webBff);
 
-// Mobile App
-
-var mobileBff = builder.AddProject<Projects.MyMonkeys_MobileBff>("mobile-bff")
-    .WithReference(monkeysApi);
-
-var publicDevTunnel = builder.AddDevTunnel("devtunnel-public")
-    .WithAnonymousAccess()
-    .WithReference(mobileBff.GetEndpoint("https"));
-
-var mobileApp = builder.AddMauiProject("mobile-app", "../MyMonkeys.Mobile/MyMonkeys.Mobile.csproj");
-
-var androidApp = mobileApp.AddAndroidEmulator()
-    .WithOtlpDevTunnel()
-    .WithReference(mobileBff, publicDevTunnel);
-
-var iosApp = mobileApp.AddiOSSimulator()
-    .WithOtlpDevTunnel()
-    .WithReference(mobileBff, publicDevTunnel);
-
-var macApp = mobileApp.AddMacCatalystDevice()
-    .WithReference(mobileBff);
-
 builder.Build().Run();

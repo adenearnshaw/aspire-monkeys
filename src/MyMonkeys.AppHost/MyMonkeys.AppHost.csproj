@@ -10,12 +10,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyMonkeys.WebBff\MyMonkeys.WebBff.csproj" />
-    <ProjectReference Include="..\MyMonkeys.MobileBff\MyMonkeys.MobileBff.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.JavaScript" Version="13.1.0" />
-    <PackageReference Include="Aspire.Hosting.Maui" Version="13.1.0-preview.1.25616.3" />
     <PackageReference Include="CommunityToolkit.Aspire.Hosting.Golang" Version="13.0.1-beta.468" />    
     <PackageReference Include="Aspire.Hosting.Redis" Version="13.1.0" />
   </ItemGroup>
