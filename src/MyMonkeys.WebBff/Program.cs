@@ -1,6 +1,9 @@
 using System.Net;
+using System.Text.Json;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using MyMonkeys.WebBff;
+using OpenTelemetry.Trace;
 using SkiaSharp;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +14,20 @@ builder.Services.AddOpenApi();
 builder.Services.AddHttpClient("monkeys", client =>
 {
     client.BaseAddress = new Uri("https://monkeys-service");
+});
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.InstanceName = "MyMonkeys:";
+    options.Configuration = builder.Configuration.GetConnectionString("redis")
+                            ?? builder.Configuration["REDIS_URI"]
+                            ?? builder.Configuration["REDIS_CONNECTIONSTRING"]
+                            ?? throw new InvalidOperationException("Redis connection string not configured (expected ConnectionStrings:redis or REDIS_URI)");
+});
+
+builder.Services.AddOpenTelemetry()
+.WithTracing(tracing => {
+    tracing.AddRedisInstrumentation();
 });
 
 builder.Services.AddMemoryCache();
@@ -44,16 +61,51 @@ if (app.Environment.IsDevelopment())
     app.UseCors("dev");
 }
 
-app.MapGet("/api/monkeys", async (IHttpClientFactory httpClientFactory, CancellationToken cancellationToken) =>
+app.MapGet("/api/monkeys", async (IHttpClientFactory httpClientFactory, IDistributedCache cache, CancellationToken cancellationToken) =>
 {
+    const string cacheKey = "monkeys:list:v1";
+
+    var cachedBytes = await cache.GetAsync(cacheKey, cancellationToken);
+    if (cachedBytes is { Length: > 0 })
+    {
+        var cached = JsonSerializer.Deserialize<IReadOnlyList<MonkeyDto>>(cachedBytes);
+        if (cached is not null)
+        {
+            return Results.Ok(cached);
+        }
+    }
+
     var client = httpClientFactory.CreateClient("monkeys");
     var monkeys = await client.GetFromJsonAsync<IReadOnlyList<MonkeyDto>>("/monkeys", cancellationToken);
-    return monkeys is null ? Results.Problem("Upstream returned no data") : Results.Ok(monkeys);
+    if (monkeys is null)
+    {
+        return Results.Problem("Upstream returned no data");
+    }
+
+    await cache.SetAsync(
+        cacheKey,
+        JsonSerializer.SerializeToUtf8Bytes(monkeys),
+        new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(2) },
+        cancellationToken);
+
+    return Results.Ok(monkeys);
 })
 .WithName("GetMonkeys");
 
-app.MapGet("/api/monkeys/{id}", async (string id, IHttpClientFactory httpClientFactory, CancellationToken cancellationToken) =>
+app.MapGet("/api/monkeys/{id}", async (string id, IHttpClientFactory httpClientFactory, IDistributedCache cache, CancellationToken cancellationToken) =>
 {
+    var cacheKey = $"monkeys:id:{id}:v1";
+
+    var cachedBytes = await cache.GetAsync(cacheKey, cancellationToken);
+    if (cachedBytes is { Length: > 0 })
+    {
+        var cached = JsonSerializer.Deserialize<MonkeyDto>(cachedBytes);
+        if (cached is not null)
+        {
+            return Results.Ok(cached);
+        }
+    }
+
     var client = httpClientFactory.CreateClient("monkeys");
     using var upstream = await client.GetAsync($"/monkeys/{Uri.EscapeDataString(id)}", cancellationToken);
 
@@ -64,7 +116,18 @@ app.MapGet("/api/monkeys/{id}", async (string id, IHttpClientFactory httpClientF
 
     upstream.EnsureSuccessStatusCode();
     var monkey = await upstream.Content.ReadFromJsonAsync<MonkeyDto>(cancellationToken: cancellationToken);
-    return monkey is null ? Results.Problem("Upstream returned no data") : Results.Ok(monkey);
+    if (monkey is null)
+    {
+        return Results.Problem("Upstream returned no data");
+    }
+
+    await cache.SetAsync(
+        cacheKey,
+        JsonSerializer.SerializeToUtf8Bytes(monkey),
+        new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) },
+        cancellationToken);
+
+    return Results.Ok(monkey);
 })
 .WithName("GetMonkeyById");
 

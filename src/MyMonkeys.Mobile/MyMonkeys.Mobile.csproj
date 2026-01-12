@@ -21,6 +21,15 @@
 		<!-- Display name -->
 		<ApplicationTitle>MyMonkeys</ApplicationTitle>
 
+		<!-- Ensure the produced .app bundle name matches what dotnet run expects for this project -->
+		<ApplicationIdGuid>$(ApplicationIdGuid)</ApplicationIdGuid>
+		<ApplicationIdGuid Condition="'$(ApplicationIdGuid)'==''">D6A4B7F7-7C1E-4EB5-9C12-5488D548A6B2</ApplicationIdGuid>
+		<ApplicationIdGuid Condition="'$(TargetFramework)'=='net10.0-maccatalyst'">$(ApplicationIdGuid)</ApplicationIdGuid>
+		<ApplicationIdGuid Condition="'$(TargetFramework)'=='net10.0-ios'">$(ApplicationIdGuid)</ApplicationIdGuid>
+
+		<!-- Force the Mac/Windows bundle/executable name to align with the project name -->
+		<ApplicationName>MyMonkeys.Mobile</ApplicationName>
+
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.mymonkeys.mobile</ApplicationId>
 
@@ -33,9 +42,20 @@
 
 		<SupportedOSPlatformVersion	Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion	Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+
+		<!-- Android: keep SupportedOSPlatformVersion (minSdk) <= TargetPlatformVersion (targetSdk). -->
 		<SupportedOSPlatformVersion	Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
+		<TargetPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">36.0</TargetPlatformVersion>
+
 		<SupportedOSPlatformVersion	Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	<!-- Debug/runtime stability: avoid trimming/linking issues that can surface as XamlParseException
+	     like "VTable setup ... RoundRectangle failed" on Android. -->
+	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-android' and '$(Configuration)'=='Debug'">
+		<AndroidLinkMode>None</AndroidLinkMode>
+		<PublishTrimmed>false</PublishTrimmed>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -60,6 +80,10 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MyMonkeys.ServiceDefaults.Maui\MyMonkeys.ServiceDefaults.Maui.csproj" />
 	</ItemGroup>
 
 
